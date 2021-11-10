@@ -11,7 +11,7 @@
     <h1 style="text-align: center;">
         Insira os Dados: 
     </h1>
-    <h3 style="text-align: center;">Obs: Utilizar ponto para casas decimais</h6>
+
     <div style="margin-left: 37%; margin-top: 5%;">
         <form action="">
             <table>
@@ -42,13 +42,18 @@
         <h1 id="resultado"></h1>
     </div>
 </body>
-
+</html>
 <script>
     function Calcular(){
         var precoGasolina = document.getElementById("precoGasolina").value;
         var quilometragem = document.getElementById("quilometragem").value;
         var media = document.getElementById("media").value;
         var gastar = document.getElementById("gastar").value;
+
+        gastar = gastar.replaceAll(',','.');
+        media = media.replaceAll(',','.');
+        quilometragem = quilometragem.replaceAll(',','.');
+        precoGasolina = precoGasolina.replaceAll(',','.');
 
         precoGasolina = parseFloat(precoGasolina);
         quilometragem = parseFloat(quilometragem);
@@ -57,10 +62,6 @@
 
         var resultado = ((gastar/precoGasolina) - (quilometragem/media)) * media;
 
-        alert(parseFloat(resultado.toFixed(2)));
+        alert("Voce pode andar mais " + resultado.toFixed(2) + " km");
     }
-
-
 </script>
-
-</html>
