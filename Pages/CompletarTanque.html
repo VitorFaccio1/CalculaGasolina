@@ -1,12 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Completa tanque</title>
 </head>
 <body>
-    
+    <h1 style="text-align: center;">Quanto irei gastar para completar o tanque?</h1>
+    <div style="margin-left: 23%; margin-top: 5%;">
+        <form action="">
+            <table>
+                <tr>
+                    <td style="font-size: 28px;">Preço Gasolina: </td>
+                    <td><input type="text" placeholder="preço gasolina" id="precoGasolina" required></td>
+                </tr>
+                <tr>
+                    <td style="font-size: 28px;">Quantos Quilometros você andou: </td>
+                    <td><input type="text" placeholder="quilometragem" id="quilometragem" required></td>
+                </tr>
+                <tr>
+                    <td style="font-size: 28px;">Quantos KM/L seu carro esta fazendo: </td>
+                    <td><input type="text" placeholder="média km/l do carro" id="media" required></td>
+                </tr>
+            </table>
+            <div>
+                <button style="margin-left: 25%; margin-top: 3%; width: 10%; font-size: 23px;" type="button" onclick="Calcular()">Calcular</button>
+            </div>
+        </form>
+    </div>
+    <h1 id="resultado" style="text-align: center;"></h1>
 </body>
 </html>
+
+<script>
+    function Calcular(){
+        var precoGasolina = document.getElementById("precoGasolina").value;
+        var quilometragem = document.getElementById("quilometragem").value;
+        var media = document.getElementById("media").value;
+
+        if(precoGasolina != "" && quilometragem != "" && media != ""){
+            media = media.replaceAll(',','.');
+            quilometragem = quilometragem.replaceAll(',','.');
+            precoGasolina = precoGasolina.replaceAll(',','.');
+    
+            precoGasolina = parseFloat(precoGasolina);
+            quilometragem = parseFloat(quilometragem);
+            media = parseFloat(media);
+    
+            var resultado = (quilometragem/media) * precoGasolina;
+    
+            document.getElementById("resultado").innerHTML = "R$"+resultado.toFixed(2);
+        }else{
+            document.getElementById("resultado").innerHTML = "Insira valores corretamete";
+        }
+    }
+</script>
